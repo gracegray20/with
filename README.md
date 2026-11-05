@@ -5,7 +5,7 @@ Figma 디자인([마이디어](https://www.figma.com/design/Uejw8CLMLDIqE85LwQ7Q
 ## 실행
 
 ```bash
-cd /Users/seunghyunpark/Projects/with
+cd "/Users/seunghyunpark/Desktop/ai 프로젝트 테스트/with"
 python3 -m http.server 5180
 ```
 
