@@ -45,7 +45,7 @@
       </div>
 
       <main class="posts">
-        <a href="#" class="post">
+        <a href="post.html" class="post">
           <div class="post__author">
             <img class="post__avatar" src="public/assets/community/avatar-1.png" alt="" width="36" height="36" />
             <div>
@@ -74,7 +74,7 @@
           </div>
         </a>
 
-        <a href="#" class="post">
+        <a href="post.html" class="post">
           <div class="post__author">
             <img class="post__avatar" src="public/assets/community/avatar-2.png" alt="" width="36" height="36" />
             <div>
@@ -103,7 +103,7 @@
           </div>
         </a>
 
-        <a href="#" class="post">
+        <a href="post.html" class="post">
           <div class="post__author">
             <img class="post__avatar" src="public/assets/community/avatar-3.png" alt="" width="36" height="36" />
             <div>
@@ -114,7 +114,6 @@
                 <span class="post__time">2시간전</span>
               </p>
             </div>
-            <img class="post__tag-icon" src="public/assets/community/icon-beer.svg" alt="술자리" width="24" height="24" />
           </div>
           <div class="post__body">
             <h2 class="post__title">남자 1분구해요! 지금 바로 오실수 있는 분??</h2>
@@ -166,6 +165,24 @@
           moveIndicator(tab);
         })
       );
+      // bottom nav: switch active tab + replay the pop animation on every tap
+      const navItems = document.querySelectorAll(".bottom-nav__item");
+      navItems.forEach((item) => {
+        item.addEventListener("click", (e) => {
+          e.preventDefault();
+          navItems.forEach((n) => {
+            const on = n === item;
+            n.classList.toggle("is-active", on);
+            if (on) n.setAttribute("aria-current", "page");
+            else n.removeAttribute("aria-current");
+          });
+          item.classList.remove("is-tapped");
+          void item.offsetWidth; // restart animation
+          item.classList.add("is-tapped");
+        });
+        item.addEventListener("animationend", () => item.classList.remove("is-tapped"));
+      });
+
       document.fonts.ready.then(() => moveIndicator(document.querySelector(".tab.is-active")));
     </script>
   </body>
