@@ -134,11 +134,11 @@
       </main>
 
       <nav class="bottom-nav" aria-label="주요 메뉴">
-        <a href="#" class="bottom-nav__item is-active" aria-current="page">
+        <a href="community.html" class="bottom-nav__item is-active" aria-current="page" data-current>
           <img src="public/assets/community/nav-community.svg" alt="" width="27.2726" height="15" />
           <span>커뮤니티</span>
         </a>
-        <a href="#" class="bottom-nav__item">
+        <a href="photo.html" class="bottom-nav__item">
           <img src="public/assets/community/nav-photo.svg" alt="" width="28" height="28" />
           <span>사진</span>
         </a>
@@ -165,25 +165,8 @@
           moveIndicator(tab);
         })
       );
-      // bottom nav: switch active tab + replay the pop animation on every tap
-      const navItems = document.querySelectorAll(".bottom-nav__item");
-      navItems.forEach((item) => {
-        item.addEventListener("click", (e) => {
-          e.preventDefault();
-          navItems.forEach((n) => {
-            const on = n === item;
-            n.classList.toggle("is-active", on);
-            if (on) n.setAttribute("aria-current", "page");
-            else n.removeAttribute("aria-current");
-          });
-          item.classList.remove("is-tapped");
-          void item.offsetWidth; // restart animation
-          item.classList.add("is-tapped");
-        });
-        item.addEventListener("animationend", () => item.classList.remove("is-tapped"));
-      });
-
       document.fonts.ready.then(() => moveIndicator(document.querySelector(".tab.is-active")));
     </script>
+    <script src="nav.js"></script>
   </body>
 </html>

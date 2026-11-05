@@ -1,0 +1,142 @@
+/* Photo screen (Figma 1563:77). Builds on community.css. */
+
+.photo-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ---------- Header ---------- */
+.photo-header {
+  position: relative;
+  height: 75px;
+  background: #fff;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.08);
+}
+
+.photo-header__logo {
+  top: 24px;
+}
+
+.view-toggle {
+  position: absolute;
+  right: 33px;
+  top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.view-toggle__btn {
+  display: grid;
+  padding: 5px;
+  margin: -5px; /* bigger tap area, same visual position */
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.view-toggle__btn:active {
+  background: rgba(28, 31, 59, 0.08);
+}
+
+.view-toggle__btn span {
+  border-radius: 1px;
+  background: rgba(28, 31, 59, 0.2);
+  transition: background 0.2s ease;
+}
+
+.view-toggle__btn.is-active span {
+  background: var(--navy);
+}
+
+/* three tall bars: 5×18, 2px apart */
+.view-toggle__btn--large {
+  grid-template-columns: repeat(3, 5px);
+  column-gap: 2px;
+}
+
+.view-toggle__btn--large span {
+  height: 18px;
+}
+
+/* 2×2 squares: 8×8, 2px apart */
+.view-toggle__btn--grid {
+  grid-template-columns: repeat(2, 8px);
+  grid-auto-rows: 8px;
+  gap: 2px;
+}
+
+/* ---------- Gallery: large (horizontal carousel) ---------- */
+.gallery[data-view="large"] {
+  display: flex;
+  gap: 22px;
+  padding: 19px 27px 120px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 27px;
+  scrollbar-width: none;
+}
+
+.gallery[data-view="large"]::-webkit-scrollbar {
+  display: none;
+}
+
+.trip {
+  display: block;
+  flex: 0 0 323px;
+  scroll-snap-align: start;
+}
+
+.trip__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 323 / 512;
+  border-radius: 35px;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.trip:active .trip__photo {
+  transform: scale(0.98);
+}
+
+.trip__title {
+  margin-top: 19px;
+  padding-left: 9px;
+  font-size: 31px;
+  font-weight: 700;
+  line-height: normal;
+  color: var(--navy);
+}
+
+.trip__date {
+  margin-top: 3px;
+  padding-left: 9px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  color: var(--navy);
+}
+
+/* ---------- Gallery: grid (2 columns) ---------- */
+.gallery[data-view="grid"] {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 13px;
+  padding: 19px 20px 120px;
+}
+
+.gallery[data-view="grid"] .trip__photo {
+  border-radius: 20px;
+}
+
+.gallery[data-view="grid"] .trip__title {
+  margin-top: 10px;
+  padding-left: 4px;
+  font-size: 20px;
+}
+
+.gallery[data-view="grid"] .trip__date {
+  margin-top: 2px;
+  padding-left: 4px;
+  font-size: 13px;
+}
