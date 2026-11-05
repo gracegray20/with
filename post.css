@@ -10,10 +10,6 @@
   flex-direction: column;
 }
 
-/* this frame's status bar is 59px (community screen uses 60px) */
-.detail-page .status-bar {
-  height: 59px;
-}
 
 /* ---------- Header ---------- */
 .detail-header {
@@ -64,7 +60,7 @@
 /* ---------- Member banner (floats under the header) ---------- */
 .member-banner {
   position: sticky;
-  top: 128px;
+  top: 69px; /* 61px header + 8px gap */
   z-index: 9;
   display: flex;
   align-items: center;
