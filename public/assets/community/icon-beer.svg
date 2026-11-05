@@ -1,0 +1,22 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="line-md:beer-filled-loop" clip-path="url(#clip0_0_89)">
+<g id="Mask group">
+<mask id="mask0_0_89" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="3" width="29" height="21">
+<g id="Group">
+<path id="Vector" d="M28 7C26 7 25 9 23 9C21 9 20 7 18 7C16 7 15 9 13 9C11 9 10 7 8 7C6 7 5 9 3 9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="white"/>
+<path id="Vector_2" d="M28 7C26 7 25 9 23 9C21 9 20 7 18 7C16 7 15 9 13 9C11 9 10 7 8 7C6 7 5 9 3 9V24H28V7Z" fill="white"/>
+<path id="Vector_3" d="M18 3L16 21H7L5 3H0V24H24V4L18 3Z" fill="black"/>
+</g>
+</mask>
+<g mask="url(#mask0_0_89)">
+<path id="Vector_4" d="M0 0H24V24H0V0Z" fill="black"/>
+</g>
+</g>
+<path id="Vector_5" d="M18 3L16 21H7L5 3H18Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="black"/>
+</g>
+<defs>
+<clipPath id="clip0_0_89">
+<rect width="24" height="24" fill="white"/>
+</clipPath>
+</defs>
+</svg>

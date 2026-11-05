@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>WITH · 커뮤니티</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" />
+    <link rel="stylesheet" href="community.css" />
+  </head>
+  <body>
+    <div class="phone">
+      <div class="top">
+        <!-- iPhone status bar -->
+        <div class="status-bar">
+          <span class="status-bar__time">9:41</span>
+          <div class="status-bar__icons">
+            <img src="public/assets/community/ios-signal.svg" alt="" width="18" height="17" />
+            <img src="public/assets/community/ios-wifi.svg" alt="" width="17" height="17" />
+            <img src="public/assets/community/ios-battery.svg" alt="" width="27" height="19" />
+          </div>
+        </div>
+
+        <header class="header">
+          <a href="#" class="header__logo">WITH</a>
+          <nav class="tabs" role="tablist" aria-label="게시판">
+            <button class="tab is-active" role="tab" aria-selected="true">동행구해요</button>
+            <button class="tab" role="tab" aria-selected="false">자유게시판</button>
+            <button class="tab" role="tab" aria-selected="false">여행박사</button>
+            <button class="tab" role="tab" aria-selected="false">여행지 질문</button>
+            <span class="tabs__indicator" aria-hidden="true"></span>
+          </nav>
+        </header>
+      </div>
+
+      <div class="filter">
+        <button class="filter__region" type="button">
+          유럽
+          <img src="public/assets/community/icon-chevron-down.svg" alt="" width="16" height="16" />
+        </button>
+        <span class="filter__country">이탈리아</span>
+      </div>
+
+      <main class="posts">
+        <a href="#" class="post">
+          <div class="post__author">
+            <img class="post__avatar" src="public/assets/community/avatar-1.png" alt="" width="36" height="36" />
+            <div>
+              <p class="post__name">사랑은 운명</p>
+              <p class="post__meta">
+                <span>여</span><img src="public/assets/community/dot.svg" alt="" width="2" height="2" />
+                <span>로마 근처</span><img src="public/assets/community/dot.svg" alt="" width="2" height="2" />
+                <span class="post__time">5분전</span>
+              </p>
+            </div>
+          </div>
+          <div class="post__body">
+            <h2 class="post__title">혹시 로마에서 같이 여행할 분?</h2>
+            <p class="post__text">제가 로마는 처음인데 치안이 좀 걱정되기도 하고 안전한 곳 위주로 다니고 싶어서 하루정도 같이 다녀보고 마음 맞으면 이탈리..</p>
+          </div>
+          <div class="post__footer">
+            <div class="post__recruit">
+              <span class="badge">3/4</span>
+              <span class="post__status">1명 구해요!</span>
+            </div>
+            <ul class="post__stats">
+              <li><img src="public/assets/community/icon-view.svg" alt="조회" width="16" height="16" />100</li>
+              <li><img src="public/assets/community/icon-heart.svg" alt="좋아요" width="16" height="16" />5</li>
+              <li><img src="public/assets/community/icon-chat-line.svg" alt="댓글" width="16" height="16" />3</li>
+            </ul>
+          </div>
+        </a>
+
+        <a href="#" class="post">
+          <div class="post__author">
+            <img class="post__avatar" src="public/assets/community/avatar-2.png" alt="" width="36" height="36" />
+            <div>
+              <p class="post__name">유럽3년차</p>
+              <p class="post__meta">
+                <span>여</span><img src="public/assets/community/dot.svg" alt="" width="2" height="2" />
+                <span>로마 근처</span><img src="public/assets/community/dot.svg" alt="" width="2" height="2" />
+                <span class="post__time">2시간전</span>
+              </p>
+            </div>
+          </div>
+          <div class="post__body">
+            <h2 class="post__title">이탈리아에서 1년을 살았어요.</h2>
+            <p class="post__text">제가 로마는 처음인데 치안이 좀 걱정되기도 하고 안전한 곳 위주로 다니고 싶어서 하루정도 같이 다녀보고 마음 맞으면 이탈리..</p>
+          </div>
+          <div class="post__footer">
+            <div class="post__recruit">
+              <span class="badge badge--full">3/3</span>
+              <span class="post__status post__status--full">다 찼어요!</span>
+            </div>
+            <ul class="post__stats">
+              <li><img src="public/assets/community/icon-view.svg" alt="조회" width="16" height="16" />1.5k</li>
+              <li><img src="public/assets/community/icon-heart.svg" alt="좋아요" width="16" height="16" />15</li>
+              <li><img src="public/assets/community/icon-chat-line.svg" alt="댓글" width="16" height="16" />143</li>
+            </ul>
+          </div>
+        </a>
+
+        <a href="#" class="post">
+          <div class="post__author">
+            <img class="post__avatar" src="public/assets/community/avatar-3.png" alt="" width="36" height="36" />
+            <div>
+              <p class="post__name">괜찮은 호랑잉</p>
+              <p class="post__meta">
+                <span>여</span><img src="public/assets/community/dot.svg" alt="" width="2" height="2" />
+                <span>로마 근처</span><img src="public/assets/community/dot.svg" alt="" width="2" height="2" />
+                <span class="post__time">2시간전</span>
+              </p>
+            </div>
+            <img class="post__tag-icon" src="public/assets/community/icon-beer.svg" alt="술자리" width="24" height="24" />
+          </div>
+          <div class="post__body">
+            <h2 class="post__title">남자 1분구해요! 지금 바로 오실수 있는 분??</h2>
+            <p class="post__text">지금 저녁자리 시작한지 30분 되었는데 남자한분이 급하게 나가셔서 한분 구해봐요. 유쾌하고 매너있으신분 오시면 좋겠습니다.</p>
+          </div>
+          <div class="post__footer">
+            <div class="post__recruit">
+              <span class="badge">3/4</span>
+              <span class="post__status post__status--full">1명 구해요!</span>
+            </div>
+            <ul class="post__stats">
+              <li><img src="public/assets/community/icon-view.svg" alt="조회" width="16" height="16" />1.5k</li>
+              <li><img src="public/assets/community/icon-heart.svg" alt="좋아요" width="16" height="16" />15</li>
+              <li><img src="public/assets/community/icon-chat-line.svg" alt="댓글" width="16" height="16" />143</li>
+            </ul>
+          </div>
+        </a>
+      </main>
+
+      <nav class="bottom-nav" aria-label="주요 메뉴">
+        <a href="#" class="bottom-nav__item is-active" aria-current="page">
+          <img src="public/assets/community/nav-community.svg" alt="" width="27.2726" height="15" />
+          <span>커뮤니티</span>
+        </a>
+        <a href="#" class="bottom-nav__item">
+          <img src="public/assets/community/nav-photo.svg" alt="" width="28" height="28" />
+          <span>사진</span>
+        </a>
+        <a href="#" class="bottom-nav__item">
+          <img src="public/assets/community/nav-chat.svg" alt="" width="24" height="24" />
+          <span>채팅</span>
+        </a>
+      </nav>
+    </div>
+
+    <script>
+      const tabs = document.querySelectorAll(".tab");
+      const indicator = document.querySelector(".tabs__indicator");
+      function moveIndicator(tab) {
+        indicator.style.width = tab.offsetWidth + 2 + "px";
+        indicator.style.transform = `translateX(${tab.offsetLeft - 2}px)`;
+      }
+      tabs.forEach((tab) =>
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => {
+            t.classList.toggle("is-active", t === tab);
+            t.setAttribute("aria-selected", t === tab);
+          });
+          moveIndicator(tab);
+        })
+      );
+      document.fonts.ready.then(() => moveIndicator(document.querySelector(".tab.is-active")));
+    </script>
+  </body>
+</html>
