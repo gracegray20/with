@@ -5,7 +5,7 @@ Figma 디자인([마이디어](https://www.figma.com/design/Uejw8CLMLDIqE85LwQ7Q
 ## 실행
 
 ```bash
-cd /Users/seunghyunpark/Projects/wdiary-app
+cd /Users/seunghyunpark/Projects/with
 python3 -m http.server 5180
 ```
 
