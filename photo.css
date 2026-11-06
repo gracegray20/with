@@ -20,7 +20,7 @@
 
 .view-toggle {
   position: absolute;
-  right: 33px;
+  right: 76px; /* leaves room for the profile button */
   top: 30px;
   display: flex;
   gap: 20px;

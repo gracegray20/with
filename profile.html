@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>내 프로필 · WITH</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+    />
+    <link rel="stylesheet" href="community.css" />
+    <link rel="stylesheet" href="post.css" />
+    <link rel="stylesheet" href="profile.css" />
+  </head>
+  <body>
+    <div class="phone">
+      <div class="top">
+        <header class="detail-header">
+          <a href="index.html" class="detail-header__back" aria-label="뒤로가기">←</a>
+          <div class="detail-header__title">
+            <h1>내 프로필</h1>
+          </div>
+        </header>
+      </div>
+
+      <main class="profile">
+        <img class="profile__photo" src="public/assets/profile/me.jpg" alt="내 프로필 사진" width="96" height="96" />
+        <h2 class="profile__name">여행자</h2>
+        <p class="profile__bio">배낭 하나로 세계 여행 중</p>
+
+        <ul class="profile__stats" id="stats"></ul>
+
+        <nav class="profile__menu" aria-label="내 활동">
+          <a href="index.html">내가 쓴 글</a>
+          <a href="photo.html">내 사진 앨범</a>
+          <a href="#">설정</a>
+        </nav>
+      </main>
+    </div>
+
+    <script src="albums.js"></script>
+    <script>
+      const { albums } = window.WITH_ALBUMS;
+      const photos = albums.reduce((n, a) => n + a.photos.length, 0);
+      document.getElementById("stats").innerHTML = `
+        <li><strong>${albums.length}</strong><span>여행한 도시</span></li>
+        <li><strong>${photos}</strong><span>사진</span></li>
+        <li><strong>0</strong><span>동행</span></li>`;
+    </script>
+  </body>
+</html>

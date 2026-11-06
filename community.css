@@ -67,6 +67,31 @@ button {
   color: var(--navy);
 }
 
+/* my profile shortcut, top-right of the main headers */
+.header__profile {
+  position: absolute;
+  right: 20px;
+  top: 22px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--line);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease;
+}
+
+.header__profile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header__profile:active {
+  transform: scale(0.9);
+}
+
 .tabs {
   position: absolute;
   left: 20px;
@@ -270,10 +295,10 @@ button {
   transform: translateX(-50%);
   z-index: 20;
   display: flex;
-  gap: 23px;
+  justify-content: space-evenly; /* 4 tabs: 커뮤니티 · 사진 · 채팅 · 더보기 */
   width: 353px;
   height: 67px;
-  padding-left: 27px;
+  padding: 0 6px;
   border-radius: 50px;
   /* glass: translucent navy + frosted blur + light edge (no gloss) */
   background: rgba(9, 12, 35, 0.9);
