@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>앨범 · WITH</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+    />
+    <!-- shared base + detail header from post.css -->
+    <link rel="stylesheet" href="community.css" />
+    <link rel="stylesheet" href="post.css" />
+    <link rel="stylesheet" href="album.css" />
+  </head>
+  <body>
+    <div class="phone album-page">
+      <div class="top">
+        <header class="detail-header">
+          <a href="photo.html" class="detail-header__back" aria-label="뒤로가기">←</a>
+          <div class="detail-header__title">
+            <h1 id="album-title">앨범</h1>
+            <p id="album-count"></p>
+          </div>
+        </header>
+      </div>
+
+      <main id="album" class="album"></main>
+    </div>
+
+    <!-- full-screen photo viewer -->
+    <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="사진 보기" hidden>
+      <div class="viewer__bar">
+        <button class="viewer__close" type="button" aria-label="닫기">✕</button>
+        <span class="viewer__count" id="viewer-count"></span>
+        <span class="viewer__spacer"></span>
+      </div>
+      <div class="viewer__track" id="viewer-track"></div>
+      <p class="viewer__caption" id="viewer-caption"></p>
+    </div>
+
+    <script src="albums.js"></script>
+    <script>
+      (() => {
+        const { find, fmtDate } = window.WITH_ALBUMS;
+        const id = new URLSearchParams(location.search).get("city");
+        const album = find(id);
+        const main = document.getElementById("album");
+
+        if (!album) {
+          main.innerHTML = `<p class="album__empty">앨범을 찾을 수 없어요.<br /><a href="photo.html">사진 목록으로 돌아가기</a></p>`;
+          return;
+        }
+
+        const DAYS = ["일", "월", "화", "수", "목", "금", "토"];
+        const pad = (n) => String(n).padStart(2, "0");
+        const dayLabel = (d) => `${d.getMonth() + 1}월 ${d.getDate()}일 (${DAYS[d.getDay()]})`;
+        const timeLabel = (d) => `${fmtDate(d)} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+
+        document.title = `${album.name} · WITH`;
+        document.getElementById("album-title").textContent = album.name;
+        document.getElementById("album-count").textContent = `사진 ${album.photos.length}장`;
+
+        // ---- grid grouped by day (photos are already newest first) ----
+        const groups = [];
+        album.photos.forEach((p, i) => {
+          const key = fmtDate(p.date);
+          let g = groups[groups.length - 1];
+          if (!g || g.key !== key) groups.push((g = { key, date: p.date, items: [] }));
+          g.items.push({ ...p, index: i });
+        });
+
+        main.innerHTML =
+          `<p class="album__range">${fmtDate(album.oldest)} – ${fmtDate(album.latest)}</p>` +
+          groups
+            .map((g) => {
+              const places = [...new Set(g.items.map((p) => p.place))].join(" · ");
+              return `
+          <section class="day">
+            <h2 class="day__title">${dayLabel(g.date)} <span>${places}</span></h2>
+            <div class="day__grid">
+              ${g.items
+                .map(
+                  (p) => `
+                <button class="thumb" type="button" data-index="${p.index}" aria-label="${p.place} 사진 크게 보기">
+                  <img src="${p.src}" alt="" loading="lazy" />
+                </button>`
+                )
+                .join("")}
+            </div>
+          </section>`;
+            })
+            .join("");
+
+        // ---- viewer ----
+        const viewer = document.getElementById("viewer");
+        const track = document.getElementById("viewer-track");
+        const countEl = document.getElementById("viewer-count");
+        const captionEl = document.getElementById("viewer-caption");
+        let current = 0;
+
+        track.innerHTML = album.photos
+          .map((p) => `<figure class="viewer__slide"><img src="${p.src}" alt="${p.place}" loading="lazy" /></figure>`)
+          .join("");
+
+        function show(i) {
+          current = i;
+          const p = album.photos[i];
+          countEl.textContent = `${i + 1} / ${album.photos.length}`;
+          captionEl.textContent = `${p.place} · ${timeLabel(p.date)}`;
+        }
+
+        function open(i) {
+          viewer.hidden = false;
+          document.body.style.overflow = "hidden";
+          track.scrollLeft = i * track.clientWidth;
+          show(i);
+          history.pushState({ viewer: true }, "", `#photo-${i + 1}`);
+        }
+
+        function close(fromHistory) {
+          if (viewer.hidden) return;
+          viewer.hidden = true;
+          document.body.style.overflow = "";
+          if (!fromHistory) history.back();
+        }
+
+        main.addEventListener("click", (e) => {
+          const t = e.target.closest(".thumb");
+          if (t) open(Number(t.dataset.index));
+        });
+
+        track.addEventListener("scroll", () => {
+          const i = Math.round(track.scrollLeft / track.clientWidth);
+          if (i !== current && i >= 0 && i < album.photos.length) show(i);
+        });
+
+        viewer.querySelector(".viewer__close").addEventListener("click", () => close(false));
+        window.addEventListener("popstate", () => close(true)); // phone/browser back closes the viewer
+
+        document.addEventListener("keydown", (e) => {
+          if (viewer.hidden) return;
+          if (e.key === "Escape") close(false);
+          if (e.key === "ArrowRight") track.scrollBy({ left: track.clientWidth, behavior: "smooth" });
+          if (e.key === "ArrowLeft") track.scrollBy({ left: -track.clientWidth, behavior: "smooth" });
+        });
+
+        // opened with #photo-N (e.g. reload while viewing) → start on the grid
+        if (location.hash.startsWith("#photo-")) history.replaceState(null, "", location.pathname + location.search);
+      })();
+    </script>
+  </body>
+</html>

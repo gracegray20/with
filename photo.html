@@ -28,23 +28,8 @@
         </header>
       </div>
 
-      <main class="gallery" data-view="large">
-        <a href="#" class="trip">
-          <img class="trip__photo" src="public/assets/photo/switzerland.jpg" alt="스위스 알프스 마을과 호수" />
-          <h2 class="trip__title">스위스</h2>
-          <p class="trip__date">2024.12.11</p>
-        </a>
-        <a href="#" class="trip">
-          <img class="trip__photo" src="public/assets/photo/london.jpg" alt="런던 템스강 풍경" />
-          <h2 class="trip__title">런던</h2>
-          <p class="trip__date">2024.12.11</p>
-        </a>
-        <a href="#" class="trip">
-          <img class="trip__photo" src="public/assets/photo/tokyo.png" alt="도쿄 거리 풍경" />
-          <h2 class="trip__title">도쿄</h2>
-          <p class="trip__date">2024.12.11</p>
-        </a>
-      </main>
+      <!-- one card per city album, rendered from albums.js (cover = most recent photo) -->
+      <main class="gallery" data-view="large"></main>
 
       <nav class="bottom-nav" aria-label="주요 메뉴">
         <a href="index.html" class="bottom-nav__item">
@@ -62,8 +47,22 @@
       </nav>
     </div>
 
+    <script src="albums.js"></script>
     <script>
       const gallery = document.querySelector(".gallery");
+      const { albums, fmtDate } = window.WITH_ALBUMS;
+
+      gallery.innerHTML = albums
+        .map(
+          (a) => `
+        <a href="album.html?city=${a.id}" class="trip">
+          <img class="trip__photo" src="${a.cover.src}" alt="${a.name} 앨범 표지" />
+          <h2 class="trip__title">${a.name}</h2>
+          <p class="trip__date">${fmtDate(a.latest)}</p>
+        </a>`
+        )
+        .join("");
+
       const toggles = document.querySelectorAll(".view-toggle__btn");
       toggles.forEach((btn) =>
         btn.addEventListener("click", () => {
