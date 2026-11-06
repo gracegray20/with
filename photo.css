@@ -9,21 +9,17 @@
 /* ---------- Header ---------- */
 .photo-header {
   position: relative;
-  height: 75px;
+  height: 76px;
   background: #fff;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.08);
 }
 
-.photo-header__logo {
-  top: 24px;
-}
-
+/* ---------- View switch (centered row under the header) ---------- */
 .view-toggle {
-  position: absolute;
-  right: 76px; /* leaves room for the profile button */
-  top: 30px;
   display: flex;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 29px;
+  margin-top: 22px;
 }
 
 .view-toggle__btn {
@@ -48,28 +44,28 @@
   background: var(--navy);
 }
 
-/* three tall bars: 5×18, 2px apart */
+/* three tall bars: 6.3×22.7, 2.5px apart (24px wide) */
 .view-toggle__btn--large {
-  grid-template-columns: repeat(3, 5px);
-  column-gap: 2px;
+  grid-template-columns: repeat(3, 6.316px);
+  column-gap: 2.526px;
 }
 
 .view-toggle__btn--large span {
-  height: 18px;
+  height: 22.737px;
 }
 
-/* 2×2 squares: 8×8, 2px apart */
+/* 2×2 squares: 10.7×10.7, 2.7px apart (24px wide) */
 .view-toggle__btn--grid {
-  grid-template-columns: repeat(2, 8px);
-  grid-auto-rows: 8px;
-  gap: 2px;
+  grid-template-columns: repeat(2, 10.667px);
+  grid-auto-rows: 10.667px;
+  gap: 2.667px;
 }
 
 /* ---------- Gallery: large (horizontal carousel) ---------- */
 .gallery[data-view="large"] {
   display: flex;
   gap: 22px;
-  padding: 19px 27px 120px;
+  padding: 21px 27px 120px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-padding-left: 27px;
@@ -122,7 +118,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px 13px;
-  padding: 19px 20px 120px;
+  padding: 21px 20px 120px;
 }
 
 .gallery[data-view="grid"] .trip__photo {

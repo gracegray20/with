@@ -17,18 +17,21 @@
       <div class="top">
         <header class="photo-header">
           <a href="index.html" class="header__logo photo-header__logo">WITH</a>
-          <div class="view-toggle" role="group" aria-label="보기 방식">
-            <button class="view-toggle__btn view-toggle__btn--large is-active" type="button" aria-pressed="true" aria-label="크게 보기" data-view="large">
-              <span></span><span></span><span></span>
-            </button>
-            <button class="view-toggle__btn view-toggle__btn--grid" type="button" aria-pressed="false" aria-label="격자 보기" data-view="grid">
-              <span></span><span></span><span></span><span></span>
-            </button>
-          </div>
           <a href="profile.html" class="header__profile" aria-label="내 프로필">
-            <img src="public/assets/profile/me.jpg" alt="" width="36" height="36" />
+            <img class="header__profile-photo" src="public/assets/profile/avatar-figma.png" alt="" width="40" height="40" />
+            <img class="header__profile-ring" src="public/assets/profile/ring.svg" alt="" width="44" height="44" />
           </a>
         </header>
+      </div>
+
+      <!-- view switch: centered under the header (Figma 1573:76/77) -->
+      <div class="view-toggle" role="group" aria-label="보기 방식">
+        <button class="view-toggle__btn view-toggle__btn--large is-active" type="button" aria-pressed="true" aria-label="크게 보기" data-view="large">
+          <span></span><span></span><span></span>
+        </button>
+        <button class="view-toggle__btn view-toggle__btn--grid" type="button" aria-pressed="false" aria-label="격자 보기" data-view="grid">
+          <span></span><span></span><span></span><span></span>
+        </button>
       </div>
 
       <!-- one card per city album, rendered from albums.js (cover = most recent photo) -->
