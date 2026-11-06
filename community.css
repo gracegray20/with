@@ -281,6 +281,20 @@ button {
   -webkit-backdrop-filter: blur(4px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow: 0 8px 24px rgba(9, 12, 35, 0.28);
+  /* hide-on-scroll (toggled by nav.js) */
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+/* scrolled down → slide below the screen edge (67px bar + 20px gap + shadow) */
+.bottom-nav.is-hidden {
+  transform: translate(-50%, calc(100% + 40px));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bottom-nav {
+    transition: none;
+  }
 }
 
 .bottom-nav__item {

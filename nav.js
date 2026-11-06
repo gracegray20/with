@@ -30,6 +30,40 @@
     item.addEventListener("animationend", () => item.classList.remove("is-tapped"));
   });
 
+  // Hide on scroll down, show again on scroll up.
+  const nav = document.querySelector(".bottom-nav");
+  if (nav) {
+    const THRESHOLD = 8; // px of movement before reacting, ignores jitter
+    let lastY = window.scrollY;
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      // clamp so iOS rubber-band overscroll at either end doesn't count as a direction change
+      const maxY = document.documentElement.scrollHeight - window.innerHeight;
+      const y = Math.min(Math.max(0, window.scrollY), maxY);
+      const delta = y - lastY;
+      if (y <= 0) nav.classList.remove("is-hidden"); // always show at the top
+      else if (Math.abs(delta) < THRESHOLD) return;
+      else if (delta > 0) nav.classList.add("is-hidden");
+      else if (delta < 0) nav.classList.remove("is-hidden");
+      lastY = y;
+    };
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      },
+      { passive: true }
+    );
+    // keyboard focus on a hidden tab brings the bar back
+    nav.addEventListener("focusin", () => nav.classList.remove("is-hidden"));
+  }
+
   // Coming back via the browser's back button restores the page from cache —
   // make sure the highlight matches this page again.
   window.addEventListener("pageshow", () => {
