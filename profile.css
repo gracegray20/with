@@ -1,78 +1,213 @@
-/* My profile screen (no Figma design yet). Builds on community.css + post.css. */
-.profile {
+/* My profile (Figma 1239:625). Builds on community.css.
+   Figma's status bar is left out, so every y-position is 59px higher than in the frame. */
+
+.me {
+  min-height: 100vh;
+  padding-bottom: 40px;
+  background: #fff;
+}
+
+/* ---------- Top bar: frosted strip over the hero ---------- */
+.me-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 60px;
+  margin-bottom: -60px; /* overlays the hero */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.me-bar__back {
+  position: absolute;
+  left: 10px;
+  top: 9px;
+  width: 37px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.52;
+  text-align: center;
+  color: #fff;
+  transition: color 0.2s ease, opacity 0.15s ease;
+}
+
+.me-bar__back:active {
+  opacity: 0.5;
+}
+
+.me-bar.is-solid {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 0 #eee;
+}
+
+.me-bar.is-solid .me-bar__back {
+  color: #000;
+}
+
+/* ---------- Hero: blurred city photo + 30% veil ---------- */
+.me-hero {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 32px 20px 40px;
+  height: 352px;
+  padding-top: 84px;
+  overflow: hidden;
+  color: #fff;
+  background: url("public/assets/join/bg.jpg") center / cover no-repeat;
+  isolation: isolate;
 }
 
-.profile__photo {
-  width: 96px;
-  height: 96px;
+.me-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(9.5px);
+  -webkit-backdrop-filter: blur(9.5px);
+}
+
+.me-hero__photo {
+  display: block;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--line);
 }
 
-.profile__name {
-  margin-top: 16px;
+.me-hero__name {
+  margin-top: 7px;
   font-size: 20px;
-  font-weight: 700;
-  color: var(--navy);
+  font-weight: 600;
+  line-height: 1.5;
 }
 
-.profile__bio {
-  margin-top: 6px;
-  font-size: 14px;
-  color: var(--gray-text);
-}
-
-.profile__stats {
+.me-hero__meta {
   display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin-top: 28px;
-  padding: 18px 0;
-  list-style: none;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.profile__stats li {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 4px;
-}
-
-.profile__stats strong {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--navy);
-}
-
-.profile__stats span {
+  margin-top: 4px;
   font-size: 12px;
-  color: var(--gray-stat);
+  font-weight: 500;
+  line-height: 1.5;
+  opacity: 0.8;
 }
 
-.profile__menu {
+.me-hero__bio {
+  margin-top: 30px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* ---------- 프로필 photos (horizontal scroll) ---------- */
+.me-photos__head {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 26px 0 0 26px;
+}
+
+.me-photos__head h2 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #000;
+}
+
+.me-photos__verified {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #065cb5;
+}
+
+.me-photos__row {
+  display: flex;
+  gap: 11px;
+  margin-top: 21px;
+  padding: 0 21px 0 21px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-padding-left: 21px;
+  scrollbar-width: none;
+}
+
+.me-photos__row::-webkit-scrollbar {
+  display: none;
+}
+
+.me-photos__row img {
+  flex: none;
+  border-radius: 50%;
+  object-fit: cover;
+  scroll-snap-align: start;
+}
+
+.me-line {
+  display: block;
+  margin: 18px 0 0 1px;
+}
+
+/* ---------- 여행사진 / 뱃지 ---------- */
+.me-tabs__bar {
+  display: flex;
+  gap: 39px;
+  padding: 48px 0 0 19px;
+}
+
+.me-tab {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #000;
+  opacity: 0.35;
+  transition: opacity 0.2s ease;
+}
+
+.me-tab.is-active {
+  opacity: 1;
+}
+
+.trips {
+  display: grid;
+  grid-template-columns: repeat(3, 108px);
+  column-gap: 11px;
+  row-gap: 27px;
+  margin-top: 19px;
+  padding-left: 20px;
+  list-style: none;
+}
+
+.trips li {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin-top: 12px;
+  align-items: flex-end;
 }
 
-.profile__menu a {
-  padding: 16px 4px;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--navy);
-  border-bottom: 1px solid var(--line);
+.trips li > img {
+  display: block;
+  width: 108px;
+  height: 108px;
+  object-fit: cover;
 }
 
-.profile__menu a::after {
-  content: "›";
-  float: right;
-  color: var(--gray-badge);
+.trips__likes {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #6d6e74;
+}
+
+.badges-empty {
+  padding: 60px 20px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--gray-text);
 }

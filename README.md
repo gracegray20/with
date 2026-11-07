@@ -21,7 +21,7 @@ python3 -m http.server 5180
 | `chat.html` + `chat.css` | 채팅방 (참여 화면의 '참여하기') | [1340:279](https://www.figma.com/design/Uejw8CLMLDIqE85LwQ7QS2/?node-id=1340-279) |
 | `photo.html` + `photo.css` | 사진 · 도시별 앨범 표지 (하단 메뉴 '사진') | [1563:77](https://www.figma.com/design/Uejw8CLMLDIqE85LwQ7QS2/?node-id=1563-77) |
 | `album.html?city=<id>` + `album.css` | 도시 앨범 · 날짜별 사진, 전체화면 보기 (표지 클릭) | 디자인 없음 |
-| `profile.html` + `profile.css` | 내 프로필 (상단 오른쪽 프로필 사진 클릭) | 디자인 없음 |
+| `profile.html` + `profile.css` | 내 프로필 (상단 오른쪽 프로필 사진 클릭) | [1239:625](https://www.figma.com/design/Uejw8CLMLDIqE85LwQ7QS2/?node-id=1239-625) |
 
 ## 구조
 

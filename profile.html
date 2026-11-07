@@ -9,43 +9,91 @@
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
     />
     <link rel="stylesheet" href="community.css" />
-    <link rel="stylesheet" href="post.css" />
     <link rel="stylesheet" href="profile.css" />
   </head>
   <body>
-    <div class="phone">
-      <div class="top">
-        <header class="detail-header">
-          <a href="index.html" class="detail-header__back" aria-label="뒤로가기">←</a>
-          <div class="detail-header__title">
-            <h1>내 프로필</h1>
-          </div>
-        </header>
-      </div>
+    <!-- Figma 1239:625 — opened from the profile picture in the top bar -->
+    <div class="phone me">
+      <header class="me-bar" id="me-bar">
+        <a href="index.html" class="me-bar__back" aria-label="뒤로가기">←</a>
+      </header>
 
-      <main class="profile">
-        <img class="profile__photo" src="public/assets/profile/avatar-figma.png" alt="내 프로필 사진" width="96" height="96" />
-        <h2 class="profile__name">여행자</h2>
-        <p class="profile__bio">배낭 하나로 세계 여행 중</p>
+      <section class="me-hero">
+        <img class="me-hero__photo" src="public/assets/profile/avatar.png" alt="" width="108" height="108" />
+        <h1 class="me-hero__name">여행은 운명</h1>
+        <p class="me-hero__meta">
+          여 <img src="public/assets/profile/dot.svg" alt="" width="2" height="2" />
+          20대 <img src="public/assets/profile/dot.svg" alt="" width="2" height="2" />
+          로마 근처
+        </p>
+        <p class="me-hero__bio">여행이 인생의 최고 행복인 사람</p>
+      </section>
 
-        <ul class="profile__stats" id="stats"></ul>
+      <section class="me-photos" aria-labelledby="me-photos-title">
+        <div class="me-photos__head">
+          <h2 id="me-photos-title">프로필</h2>
+          <p class="me-photos__verified">
+            <img src="public/assets/profile/info.svg" alt="" width="14" height="14" />
+            인증된 프로필입니다.
+          </p>
+        </div>
+        <div class="me-photos__row">
+          <img src="public/assets/profile/photo-1.png" alt="프로필 사진 1" width="108" height="108" />
+          <img src="public/assets/profile/photo-2.png" alt="프로필 사진 2" width="108" height="108" />
+          <img src="public/assets/profile/photo-3.png" alt="프로필 사진 3" width="108" height="108" />
+          <img src="public/assets/profile/photo-4.png" alt="프로필 사진 4" width="108" height="108" />
+        </div>
+      </section>
 
-        <nav class="profile__menu" aria-label="내 활동">
-          <a href="index.html">내가 쓴 글</a>
-          <a href="photo.html">내 사진 앨범</a>
-          <a href="#">설정</a>
-        </nav>
-      </main>
+      <img class="me-line" src="public/assets/profile/line.svg" alt="" width="392" height="1" />
+
+      <section class="me-tabs">
+        <div class="me-tabs__bar" role="tablist" aria-label="내 활동">
+          <button class="me-tab is-active" role="tab" aria-selected="true" aria-controls="panel-trips" id="tab-trips">여행사진</button>
+          <button class="me-tab" role="tab" aria-selected="false" aria-controls="panel-badges" id="tab-badges">뱃지</button>
+        </div>
+
+        <ul class="trips" id="panel-trips" role="tabpanel" aria-labelledby="tab-trips">
+          <li><img src="public/assets/profile/trip-1.jpg" alt="로마 콜로세움" width="108" height="108" /><span class="trips__likes"><img src="public/assets/profile/heart.svg" alt="좋아요" width="16" height="16" />56</span></li>
+          <li><img src="public/assets/profile/trip-2.jpg" alt="밀라노 두오모" width="108" height="108" /><span class="trips__likes"><img src="public/assets/profile/heart.svg" alt="좋아요" width="16" height="16" />31</span></li>
+          <li><img src="public/assets/profile/trip-3.jpg" alt="나폴리 해안" width="108" height="108" /><span class="trips__likes"><img src="public/assets/profile/heart.svg" alt="좋아요" width="16" height="16" />22</span></li>
+          <li><img src="public/assets/join/bg.jpg" alt="로마 판테온" width="107" height="107" /><span class="trips__likes"><img src="public/assets/profile/heart.svg" alt="좋아요" width="16" height="16" />12</span></li>
+          <li><img src="public/assets/profile/trip-5.jpg" alt="베네치아 리알토 다리" width="107" height="107" /><span class="trips__likes"><img src="public/assets/profile/heart.svg" alt="좋아요" width="16" height="16" />35</span></li>
+          <li><img src="public/assets/profile/trip-6.jpg" alt="코모 호수" width="108" height="108" /><span class="trips__likes"><img src="public/assets/profile/heart.svg" alt="좋아요" width="16" height="16" />15</span></li>
+        </ul>
+
+        <p class="badges-empty" id="panel-badges" role="tabpanel" aria-labelledby="tab-badges" hidden>아직 받은 뱃지가 없어요.</p>
+      </section>
     </div>
 
-    <script src="albums.js"></script>
     <script>
-      const { albums } = window.WITH_ALBUMS;
-      const photos = albums.reduce((n, a) => n + a.photos.length, 0);
-      document.getElementById("stats").innerHTML = `
-        <li><strong>${albums.length}</strong><span>여행한 도시</span></li>
-        <li><strong>${photos}</strong><span>사진</span></li>
-        <li><strong>0</strong><span>동행</span></li>`;
+      // back: return to the screen we came from, fall back to home
+      document.querySelector(".me-bar__back").addEventListener("click", (e) => {
+        if (document.referrer) {
+          e.preventDefault();
+          history.back();
+        }
+      });
+
+      // over the white content the bar turns solid so the ← stays visible
+      const bar = document.getElementById("me-bar");
+      const hero = document.querySelector(".me-hero");
+      const onScroll = () => bar.classList.toggle("is-solid", window.scrollY > hero.offsetHeight - bar.offsetHeight);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      // 여행사진 / 뱃지 tabs
+      const tabs = document.querySelectorAll(".me-tab");
+      tabs.forEach((tab) =>
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => {
+            const on = t === tab;
+            t.classList.toggle("is-active", on);
+            t.setAttribute("aria-selected", on);
+            document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+          });
+        })
+      );
     </script>
   </body>
 </html>
