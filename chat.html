@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>로마 팸 구해요 · 채팅 · WITH</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+    />
+    <link rel="stylesheet" href="community.css" />
+    <link rel="stylesheet" href="chat.css" />
+  </head>
+  <body>
+    <!-- Figma 1340:279 — opened from 참여하기 on the join screen -->
+    <div class="phone chat">
+      <header class="chat-header">
+        <div class="chat-header__top">
+          <a href="post.html" class="chat-header__back" aria-label="뒤로가기">←</a>
+          <div class="chat-header__title">
+            <h1>로마 팸 구해요</h1>
+            <p>채팅 참여자 <span id="chat-count">7명 /10명</span></p>
+          </div>
+          <button class="chat-header__more" type="button" aria-label="더보기">
+            <img src="public/assets/chat/icon-more.svg" alt="" width="28" height="28" />
+          </button>
+        </div>
+        <img class="chat-header__line" src="public/assets/chat/header-line.svg" alt="" width="393" height="1" />
+        <div class="chat-header__members">
+          <div class="chat-header__avatars" aria-hidden="true">
+            <img src="public/assets/chat/member-1.png" alt="" width="24" height="24" />
+            <img src="public/assets/chat/member-2.png" alt="" width="24" height="24" />
+            <img src="public/assets/chat/member-3.png" alt="" width="24" height="24" />
+          </div>
+          <p class="chat-header__confirmed"><strong>확정멤버 3명</strong><span>/4명</span></p>
+          <button class="chat-header__view" type="button">멤버 보기</button>
+        </div>
+        <img class="chat-header__line chat-header__line--bottom" src="public/assets/chat/header-line-bottom.svg" alt="" width="393" height="1" />
+      </header>
+
+      <main class="messages" id="messages" aria-live="polite">
+        <section class="msg">
+          <div class="msg__who">
+            <img class="msg__avatar" src="public/assets/chat/avatar-kkuan.png" alt="" width="40" height="40" />
+            <div>
+              <p class="msg__name">꾸안꾸안꾸</p>
+              <p class="msg__meta">여 <img src="public/assets/chat/dot.svg" alt="" width="2" height="2" /> 피렌체 근처</p>
+            </div>
+          </div>
+          <div class="msg__row">
+            <p class="bubble">저두요! ㅋㅋ</p>
+            <time class="msg__time">10분전</time>
+          </div>
+        </section>
+
+        <p class="system">
+          <img class="system__line system__line--left" src="public/assets/chat/line-left.svg" alt="" width="88" height="1" />
+          <span><strong>블루타이거님</strong>(나)이 입장하였습니다.</span>
+          <img class="system__line system__line--right" src="public/assets/chat/line-right.svg" alt="" width="76" height="1" />
+        </p>
+
+        <div class="msg msg--mine">
+          <div class="msg__row">
+            <time class="msg__time">6분전</time>
+            <p class="bubble bubble--mine">안녕하세요!</p>
+          </div>
+        </div>
+
+        <section class="msg">
+          <div class="msg__who">
+            <span class="msg__avatar-wrap">
+              <img class="msg__avatar" src="public/assets/chat/avatar-host.png" alt="" width="40" height="40" />
+              <img class="msg__crown" src="public/assets/chat/crown.svg" alt="방장" width="16" height="16" />
+            </span>
+            <div>
+              <p class="msg__name">사랑은 운명</p>
+              <p class="msg__meta">여 <img src="public/assets/chat/dot.svg" alt="" width="2" height="2" /> 로마 근처</p>
+            </div>
+          </div>
+          <div class="msg__row">
+            <p class="bubble">저는 로마 처음이라 하나도 몰라요!</p>
+            <time class="msg__time">5분전</time>
+          </div>
+        </section>
+
+        <section class="msg">
+          <div class="msg__who">
+            <img class="msg__avatar" src="public/assets/chat/avatar-kkuan-2.png" alt="" width="40" height="40" />
+            <div>
+              <p class="msg__name">꾸안꾸안꾸</p>
+              <p class="msg__meta">여 <img src="public/assets/chat/dot.svg" alt="" width="2" height="2" /> 피렌체 근처</p>
+            </div>
+          </div>
+          <div class="msg__row">
+            <p class="bubble">안녕하세요 블루타이거님! 간단히 소개 좀 부탁드립니다!</p>
+            <time class="msg__time">4분전</time>
+          </div>
+        </section>
+      </main>
+
+      <form class="chat-input" id="chat-form" autocomplete="off">
+        <label class="chat-input__box">
+          <img src="public/assets/chat/icon-picture.svg" alt="" width="32" height="32" />
+          <img src="public/assets/chat/input-divider.svg" alt="" width="1" height="32" />
+          <input id="chat-text" type="text" placeholder="메세지를 입력하세요" aria-label="메세지" enterkeyhint="send" />
+        </label>
+        <button class="chat-input__send" type="submit">전송</button>
+      </form>
+    </div>
+
+    <!-- 멤버 보기 side panel (Figma 1459:2579) -->
+    <div class="members-backdrop" id="members-backdrop" hidden></div>
+    <aside class="members" id="members" role="dialog" aria-modal="true" aria-labelledby="members-title" hidden>
+      <header class="members__head">
+        <button class="members__close" type="button" aria-label="닫기">
+          <img src="public/assets/chat/icon-close.svg" alt="" width="32" height="32" />
+        </button>
+        <h2 id="members-title">멤버 보기</h2>
+        <p class="members__count"><span>채팅 참여자</span><span id="members-chat">7명/10명</span></p>
+      </header>
+      <img class="members__line" src="public/assets/chat/panel-line.svg" alt="" width="318" height="1" />
+      <p class="members__label">확정 멤버 <strong id="members-confirmed">3명</strong> <span>/4명</span></p>
+      <ul class="members__list members__list--confirmed" id="list-confirmed"></ul>
+      <img class="members__line" src="public/assets/chat/panel-line.svg" alt="" width="318" height="1" />
+      <ul class="members__list members__list--pending" id="list-pending"></ul>
+    </aside>
+
+    <script>
+      const list = document.getElementById("messages");
+      const form = document.getElementById("chat-form");
+      const input = document.getElementById("chat-text");
+
+      // land on the newest message
+      window.scrollTo(0, document.body.scrollHeight);
+
+      // back: return to the post (the join screen was replaced on the way in)
+      document.querySelector(".chat-header__back").addEventListener("click", (e) => {
+        if (document.referrer) {
+          e.preventDefault();
+          history.back();
+        }
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const text = input.value.trim();
+        if (!text) return;
+
+        const msg = document.createElement("div");
+        msg.className = "msg msg--mine is-new";
+        msg.innerHTML = `<div class="msg__row"><time class="msg__time">방금</time><p class="bubble bubble--mine"></p></div>`;
+        msg.querySelector(".bubble").textContent = text; // plain text, never HTML
+        list.appendChild(msg);
+
+        input.value = "";
+        input.focus();
+        msg.scrollIntoView({ behavior: "smooth", block: "end" });
+      });
+
+      // ---------- 멤버 보기 side panel ----------
+      const MAX_CONFIRMED = 4;
+      const MAX_CHAT = 10;
+      const A = "public/assets/chat";
+      const members = [
+        { id: "host", name: "사랑은 운명", gender: "여", area: "로마 근처", photo: `${A}/m-host.png`, host: true, confirmed: true },
+        { id: "kkuan", name: "꾸안꾸안꾸", gender: "여", area: "피렌체 근처", photo: `${A}/m-kkuan.png`, confirmed: true },
+        { id: "gorgon", name: "고르곤졸라", gender: "여", area: "로마 근처", photo: `${A}/m-gorgon.png`, confirmed: true },
+        { id: "oz", name: "오즈의마법사", gender: "여", area: "피렌체 근처", photo: `${A}/m-oz.png`, more: true },
+        { id: "dali", name: "달리보니하니", gender: "여", area: "로마 근처", photo: `${A}/m-dali.png` },
+        { id: "time", name: "시간여행자", gender: "여", area: "로마 근처", photo: `${A}/m-time.png` },
+        { id: "yuna", name: "yunaforyou", gender: "여", area: "피렌체", ago: "3분전", photo: `${A}/m-yuna.png` },
+      ];
+
+      const panel = document.getElementById("members");
+      const backdrop = document.getElementById("members-backdrop");
+      const listConfirmed = document.getElementById("list-confirmed");
+      const listPending = document.getElementById("list-pending");
+      const DOT = `<img src="${A}/dot.svg" alt="" width="2" height="2" />`;
+      const esc = (t) => t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+      function row(m, full) {
+        const meta = [m.gender, m.area, m.ago].filter(Boolean).map(esc).join(` ${DOT} `);
+        const more = m.confirmed || m.more
+          ? `<button class="member__more" type="button" aria-label="${esc(m.name)} 더보기"><img src="${A}/icon-more-panel.svg" alt="" width="28" height="28" /></button>`
+          : "";
+        const actions = m.confirmed
+          ? ""
+          : `<div class="member__actions">
+               <button class="member__btn member__btn--kick" type="button" data-act="kick">내보내기</button>
+               <button class="member__btn member__btn--ok" type="button" data-act="confirm" ${full ? "disabled" : ""}>확정하기</button>
+             </div>`;
+        return `
+          <li class="member${m.confirmed ? "" : " member--pending"}" data-id="${m.id}">
+            <div class="member__who">
+              <span class="member__photo">
+                <img src="${m.photo}" alt="" width="32" height="32" />
+                ${m.host ? `<img class="member__crown" src="${A}/crown-panel.svg" alt="방장" width="16" height="16" />` : ""}
+              </span>
+              <div>
+                <p class="member__name">${esc(m.name)}</p>
+                <p class="member__meta">${meta}</p>
+              </div>
+              ${more}
+            </div>
+            ${actions}
+            ${m.confirmed ? "" : `<img class="member__line" src="${A}/panel-line-short.svg" alt="" width="289" height="1" />`}
+          </li>`;
+      }
+
+      function render() {
+        const confirmed = members.filter((m) => m.confirmed);
+        const pending = members.filter((m) => !m.confirmed);
+        const full = confirmed.length >= MAX_CONFIRMED;
+        listConfirmed.innerHTML = confirmed.map((m) => row(m, full)).join("");
+        listPending.innerHTML = pending.map((m) => row(m, full)).join("");
+        document.getElementById("members-confirmed").textContent = `${confirmed.length}명`;
+        document.getElementById("members-chat").textContent = `${members.length}명/${MAX_CHAT}명`;
+        // keep the chat header in step
+        document.querySelector(".chat-header__confirmed strong").textContent = `확정멤버 ${confirmed.length}명`;
+        document.getElementById("chat-count").textContent = `${members.length}명 /${MAX_CHAT}명`;
+      }
+
+      listPending.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-act]");
+        if (!btn || btn.disabled) return;
+        const li = btn.closest(".member");
+        const i = members.findIndex((m) => m.id === li.dataset.id);
+        if (btn.dataset.act === "confirm") {
+          members[i].confirmed = true;
+          render();
+        } else {
+          li.classList.add("is-leaving");
+          setTimeout(() => { members.splice(i, 1); render(); }, 200);
+        }
+      });
+
+      function openPanel() {
+        render();
+        backdrop.hidden = false;
+        panel.hidden = false;
+        void panel.offsetWidth; // commit the closed position so the slide-in animates
+        document.body.classList.add("members-open");
+        history.pushState({ members: true }, "", "#members");
+        panel.querySelector(".members__close").focus();
+      }
+
+      function closePanel(fromHistory) {
+        if (panel.hidden) return;
+        document.body.classList.remove("members-open");
+        setTimeout(() => { panel.hidden = true; backdrop.hidden = true; }, 280);
+        if (!fromHistory) history.back();
+        document.querySelector(".chat-header__view").focus();
+      }
+
+      document.querySelector(".chat-header__view").addEventListener("click", openPanel);
+      panel.querySelector(".members__close").addEventListener("click", () => closePanel(false));
+      backdrop.addEventListener("click", () => closePanel(false));
+      window.addEventListener("popstate", () => closePanel(true)); // phone back closes the panel
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePanel(false); });
+      if (location.hash === "#members") history.replaceState(null, "", location.pathname);
+    </script>
+  </body>
+</html>

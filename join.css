@@ -1,0 +1,192 @@
+/* Chat join screen (Figma 1340:185). Builds on community.css.
+   Figma's status bar is left out, so every y-position is 60px higher than in the frame. */
+
+.join-body {
+  background: #eee;
+}
+
+.join {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #eee;
+}
+
+/* blurred city photo + 30% black veil */
+.join__bg {
+  position: absolute;
+  inset: 0;
+  background: url("public/assets/join/bg.jpg") center / cover no-repeat;
+}
+
+.join__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.join__back {
+  position: absolute;
+  z-index: 1;
+  left: 11px;
+  top: 8px;
+  width: 35px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.52;
+  text-align: center;
+  color: #fff;
+  transition: opacity 0.15s ease;
+}
+
+.join__back:active {
+  opacity: 0.5;
+}
+
+/* ---------- Card ---------- */
+.join-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 330px;
+  height: 516px;
+  margin: 94px auto 40px;
+  padding: 50px 31px 28px 32px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow:
+    inset -2px -2px 0 rgba(255, 255, 255, 0.8),
+    inset 2px 2px 0 rgba(255, 255, 255, 0.8),
+    0 4px 30px rgba(0, 0, 0, 0.13);
+}
+
+.join-card__title {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: normal;
+  color: #07072e;
+}
+
+.join-card__chat {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: normal;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.join-card__chat strong {
+  margin-left: 2px;
+  font-weight: 600;
+  color: #0050a3;
+}
+
+.join-card__chat span {
+  margin-left: 3px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #0050a3;
+}
+
+.join-card__host {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  margin-top: 28px;
+}
+
+.join-card__host-photo {
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.join-card__crown {
+  position: absolute;
+  left: 65px;
+  top: 65px;
+}
+
+.join-card__name {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: normal;
+  color: #000;
+}
+
+/* overlapping avatars + 확정 3/4명 */
+.join-card__members {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 27px;
+}
+
+.join-card__avatars {
+  display: flex;
+  align-items: center;
+}
+
+.join-card__avatars img {
+  display: block;
+  border-radius: 50%;
+}
+
+/* leftmost avatar sits on top; Figma overlaps: 21.2px, then 19.3px */
+.join-card__avatars img:nth-child(2) { margin-left: -21.2px; }
+.join-card__avatars img:nth-child(3) { margin-left: -19.25px; }
+
+.join-card__avatars img:nth-child(1) { position: relative; z-index: 3; }
+.join-card__avatars img:nth-child(2) { position: relative; z-index: 2; }
+.join-card__avatars img:nth-child(3) { position: relative; z-index: 1; }
+
+.join-card__confirmed {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #2e3359;
+}
+
+.join-card__confirmed strong {
+  font-weight: 600;
+}
+
+.join-card__confirmed span {
+  font-size: 13px;
+  font-weight: 400;
+  color: #4f4f4f;
+}
+
+.join-card__notice {
+  align-self: stretch;
+  margin-top: 44px;
+  padding: 0 4px 0 10px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #000;
+}
+
+.join-card__btn {
+  align-self: stretch;
+  margin-top: auto;
+  padding: 16px 0;
+  border-radius: 12px;
+  background: #2082e7;
+  filter: drop-shadow(0 2px 1.5px rgba(0, 0, 0, 0.1));
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  transition: transform 0.12s ease, background 0.2s ease;
+}
+
+.join-card__btn:active {
+  transform: scale(0.97);
+}

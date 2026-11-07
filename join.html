@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>채팅 참여 · WITH</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+    />
+    <link rel="stylesheet" href="community.css" />
+    <link rel="stylesheet" href="join.css" />
+  </head>
+  <body class="join-body">
+    <!-- Figma 1340:185 — opened from 참여하기 on the post detail -->
+    <div class="phone join">
+      <div class="join__bg" aria-hidden="true"></div>
+
+      <a href="post.html" class="join__back" aria-label="뒤로가기">←</a>
+
+      <main class="join-card">
+        <h1 class="join-card__title">로마 팸 구해요</h1>
+        <p class="join-card__chat">
+          채팅 참여자 <strong>7명</strong><span>/10명</span>
+        </p>
+
+        <div class="join-card__host">
+          <img class="join-card__host-photo" src="public/assets/join/host.png" alt="" width="88" height="88" />
+          <img class="join-card__crown" src="public/assets/join/crown.svg" alt="방장" width="23.2884" height="23" />
+        </div>
+        <p class="join-card__name">사랑은 운명</p>
+
+        <div class="join-card__members">
+          <div class="join-card__avatars" aria-hidden="true">
+            <img src="public/assets/join/member-3.png" alt="" width="35.439" height="35" />
+            <img src="public/assets/join/member-2.png" alt="" width="36.451" height="36" />
+            <img src="public/assets/join/member-1.png" alt="" width="36.451" height="36" />
+          </div>
+          <p class="join-card__confirmed">확정 <strong>3</strong><span>/4명</span></p>
+        </div>
+
+        <p class="join-card__notice">매너를 지켜주세요. 비매너이신분 강퇴합니다. 양해바랍니다.</p>
+
+        <button class="join-card__btn" type="button" id="join-btn">참여하기</button>
+      </main>
+    </div>
+
+    <script>
+      // back: return to wherever we came from (the post), fall back to post.html
+      document.querySelector(".join__back").addEventListener("click", (e) => {
+        if (history.length > 1 && document.referrer) {
+          e.preventDefault();
+          history.back();
+        }
+      });
+
+      // 참여하기 → chat room. replace() so 'back' from the chat returns to the post, not here.
+      document.getElementById("join-btn").addEventListener("click", () => {
+        setTimeout(() => location.replace("chat.html"), 150); // let the press animation show
+      });
+    </script>
+  </body>
+</html>
